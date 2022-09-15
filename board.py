@@ -4,9 +4,8 @@ Mod
 
 from collections import namedtuple
 from enum import Enum
+from utils import Point
 
-
-Point = namedtuple('Point', 'x y')
 
 
 FieldDir = namedtuple("FieldDir", "up right down left")

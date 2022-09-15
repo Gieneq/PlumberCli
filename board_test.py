@@ -1,5 +1,6 @@
 import unittest
-from board import Point, Board, Fields
+from board import Board, Fields
+from utils import Point
 
 class TestBoard(unittest.TestCase):
 
