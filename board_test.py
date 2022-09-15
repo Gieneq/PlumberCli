@@ -1,6 +1,6 @@
 import unittest
-from board import Board, Fields
-from utils import Point
+from board import Board, FieldType
+from utils import Point, Presets
 
 class TestBoard(unittest.TestCase):
 
@@ -11,7 +11,9 @@ class TestBoard(unittest.TestCase):
         pass
 
     def test_setting_field(self):
-        board = Board(width=10, height=10)
+        presets = Presets().withWidth(10).withHeight(10).withEndPoint(Point(9,9)).validate()
+
+        board = Board(presets)
         p1_ok = Point(0,0)
         p2_ok = Point(9, 9)
         p3_bad = Point(9, 10)
@@ -34,8 +36,7 @@ class TestBoard(unittest.TestCase):
             board.set_field(p1_ok, 'x')
 
 class TestField(unittest.TestCase):
-
     def test_symbol_validation(self):        
-        self.assertTrue(Fields.validate_sign('╩'))
-        self.assertTrue(Fields.validate_sign(' '))
-        self.assertFalse(Fields.validate_sign('x'))
+        self.assertTrue(FieldType.validate_sign('╩'))
+        self.assertTrue(FieldType.validate_sign(' '))
+        self.assertFalse(FieldType.validate_sign('x'))
