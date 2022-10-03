@@ -1,5 +1,5 @@
 import unittest
-from board import Board, FieldType
+from board import Board, PipeType
 from utils import Point, Presets
 
 class TestBoard(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestBoard(unittest.TestCase):
         pass
 
     def test_setting_field(self):
-        presets = Presets().withWidth(10).withHeight(10).withEndPoint(Point(9,9)).validate()
+        presets = Presets().with_width(10).with_height(10).with_end_point(Point(9, 9)).validate()
 
         board = Board(presets)
         p1_ok = Point(0,0)
@@ -24,19 +24,19 @@ class TestBoard(unittest.TestCase):
         self.assertFalse(p4_bad in board)
 
         with self.assertRaises(IndexError):
-            board.get_field(p3_bad)
+            board.get_pipe(p3_bad)
 
         with self.assertRaises(IndexError):
-            board.get_field(p4_bad)
+            board.get_pipe(p4_bad)
 
-        self.assertEqual(board.set_field(p1_ok, '╩'), '╩')
-        self.assertEqual(board.set_field(p1_ok, ' '), ' ')
+        self.assertEqual(board.set_pipe(p1_ok, '╩'), '╩')
+        self.assertEqual(board.set_pipe(p1_ok, ' '), ' ')
 
         with self.assertRaises(ValueError):
-            board.set_field(p1_ok, 'x')
+            board.set_pipe(p1_ok, 'x')
 
 class TestField(unittest.TestCase):
     def test_symbol_validation(self):        
-        self.assertTrue(FieldType.validate_sign('╩'))
-        self.assertTrue(FieldType.validate_sign(' '))
-        self.assertFalse(FieldType.validate_sign('x'))
+        self.assertTrue(PipeType.validate_symbol('╩'))
+        self.assertTrue(PipeType.validate_symbol(' '))
+        self.assertFalse(PipeType.validate_symbol('x'))
