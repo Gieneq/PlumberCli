@@ -1,13 +1,13 @@
-import argparse
-from utils import Point, Presets
-import board
-from board import Board
-from render import Renderer
+from utils.point import Point
+from structures.grid_pipes import PipeGrid, Presets
+from structures.grid import Grid
+from utils.render import Renderer
+from structures.pipe import Pipe
 
 
 class Game:
-    def __init__(self, presets:Presets):
-        self.board = Board(presets)
+    def __init__(self, presets: Presets):
+        self.board = PipeGrid.from_preset(presets)
 
     def start(self):
         self._loop()
@@ -26,7 +26,13 @@ class Game:
         # self._process_input()
         # self._update()
         self._render()
-        self.board.check_connection(self.board.start, self.board.stop)
+        path = self.board.check_connection()
+        result_grid = Grid.as_grid(self.board, value=' ')
+        result_grid.draw_path(path, value=Pipe)
+        # result_grid = self.board.get_path_masked_grid(path)
+        Renderer.render(result_grid)
+        print(path)
+
 
 
 # parser = argparse.ArgumentParser(description='Sth')
@@ -39,9 +45,11 @@ class Game:
 # print(presets)
 
 def main():
-    presets = Presets().with_width(5).with_height(3).with_end_point(Point(4,2)).validate()
+    general_pipe = Pipe.by_dirs(up=True, left=True, down=True, right=True)
+    presets = Presets().with_width(5).with_height(3).with_end_point(Point(4, 2)).with_base_symbol(general_pipe).validate()
     game = Game(presets)
     game.start()
+
 
 if __name__ == "__main__":
     main()
