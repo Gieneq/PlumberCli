@@ -1,4 +1,5 @@
 # Plumber Game
+[![Python 3.9](https://img.shields.io/badge/python-3.9-green.svg)](https://www.python.org/downloads/release/python-390/)
 
 Let water flow from the start to the end through ASCII pipes.
 
@@ -15,7 +16,9 @@ Let water flow from the start to the end through ASCII pipes.
 
 ## Usage
 
-Simply run with Python 3.9+:
+
+
+Simply run:
 ```shell
 python plumber.py
 ```
