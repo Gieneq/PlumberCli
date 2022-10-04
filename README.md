@@ -15,7 +15,7 @@ Let water flow from the start to the end through ASCII pipes.
 
 ## Usage
 
-Simply run:
+Simply run with Python 3.9+:
 ```shell
 python plumber.py
 ```
