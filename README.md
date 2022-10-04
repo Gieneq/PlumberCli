@@ -1,6 +1,8 @@
 # Plumber Game
 [![Python 3.9](https://img.shields.io/badge/python-3.9-green.svg)](https://www.python.org/downloads/release/python-390/)
 
+![Plumber game in CLI](img/plumber.JPG)
+
 Let water flow from the start to the end through ASCII pipes.
 
 ```text
@@ -55,11 +57,11 @@ Solved with 3 moves!
 
 ## Parameters
 Parameters used to generate the board:
-- --width - width e.g. '--width 8',
-- --height - height e.g. '--height 5',
-- --start - starting point x y e.g. '--start 0 0',
-- --end - ending point x y e.g. '--end 7 4',
-- --difficulty - board generation parameter e.g. '--difficulty easy'.
+- **--width** - width e.g. '--width 8',
+- **--height** - height e.g. '--height 5',
+- **--start** - starting point x y e.g. '--start 0 0',
+- **--end** - ending point x y e.g. '--end 7 4',
+- **--difficulty** - board generation parameter e.g. '--difficulty easy'.
 
 Be careful with start/end points - they should be within dimensions of the board.
 
