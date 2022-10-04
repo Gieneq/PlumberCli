@@ -8,6 +8,7 @@ from structures.pipe import Pipe
 class Game:
     def __init__(self, presets: Presets):
         self.board = PipeGrid.from_preset(presets)
+        Renderer.init()
 
     def start(self):
         self._loop()
@@ -26,12 +27,12 @@ class Game:
         # self._process_input()
         # self._update()
         self._render()
-        path = self.board.check_connection()
+        path = self.board.find_connection_path()
         result_grid = Grid.as_grid(self.board, value=' ')
         result_grid.draw_path(path, value=Pipe)
         # result_grid = self.board.get_path_masked_grid(path)
-        Renderer.render(result_grid)
-        print(path)
+        # Renderer.render(result_grid)
+        # print(len(path), path, )
 
 
 

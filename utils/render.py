@@ -1,10 +1,22 @@
 from math import ceil
 from .pallet import PALLET_DEFAULT, CORRUPTED_SYMBOL, WALL, WALL_TOP, WALL_BOTTOM
+import os, platform
+
+
+def clear_screen():
+    cmd = 'cls' if platform.system() == 'Windows' else 'clear'
+    os.system(cmd)
+
 
 class Renderer:
     @staticmethod
+    def init():
+        clear_screen()
+
+    @staticmethod
     def render(grid, pallet=PALLET_DEFAULT):
-        print('Has grid?', hasattr(grid, 'get_grid'))
+        clear_screen()
+        # print('Has grid?', hasattr(grid, 'get_grid'))
 
         x_labels_chars = ord('Z') - ord('A') + 1
         x_labels_count = grid.width
@@ -13,8 +25,8 @@ class Renderer:
 
         y_labels_count = grid.height
         y_labels_digits = len(str(y_labels_count)) + 1
-        print(x_labels_count, x_labels_per_row, x_labels_rows)
-
+        # print(x_labels_count, x_labels_per_row, x_labels_rows)
+        print()
         for row_idx in range(x_labels_rows):
             labels_row = ' ' * y_labels_digits + WALL + ' ' * row_idx
             for label_idx in range(x_labels_per_row):

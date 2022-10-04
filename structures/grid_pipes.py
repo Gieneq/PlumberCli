@@ -85,8 +85,8 @@ class PipeGrid(Grid):
         outputs = filter(lambda output: point in self.get_pipe_outputs(output), outputs)
         return list(outputs)
 
-    def check_connection(self):
-        return check_connection(self)
+    def find_connection_path(self):
+        return check_connection(self, algorithm_name='BFS')
 
     def get_path_masked_grid(self, path):
         grid = Grid.as_grid(self, value=' ')
@@ -96,7 +96,7 @@ class PipeGrid(Grid):
 
     def check_solved(self):
         # TODO na pewno > 0, co jak nie znajdzie, nie zwraca kawalka sciezki?
-        return len(self.check_connection()) > 0
+        return len(self.find_connection_path()) > 0
 
     def setup_pipes(self):
         self.set(Point(1, 0), Pipe.by_dirs(up=True, down=True))
