@@ -56,14 +56,16 @@ Parameters used to generate the board:
 - --height - height e.g. '--height 5',
 - --start - starting point x y e.g. '--start 0 0',
 - --end - ending point x y e.g. '--end 7 4',
-- --difficulty - board generation parameter e.g. '--difficulty easy',
+- --difficulty - board generation parameter e.g. '--difficulty easy'.
+
+Be careful with start/end points - they should be within dimensions of the board.
 
 ## Algorithms
 BFS is used to check connection between the start and the end. 
 
 ## TODO
--[ ] Fix: game can be not possible to solve.
--[ ] Fix: a randomly generated board is too random.
--[ ] Fix: start/end parameter are not concise with the board's coordinates.
--[ ] Add: DFS solution generation.
--[ ] Add: mixing pipe output's as difficulty parameter.
+- [ ] Fix: game can be not possible to solve.
+- [ ] Fix: a randomly generated board is too random.
+- [ ] Fix: start/end parameter are not concise with the board's coordinates.
+- [ ] Add: DFS solution generation.
+- [ ] Add: mixing pipe output's as difficulty parameter.
