@@ -1,6 +1,8 @@
 from collections import namedtuple
+from functools import reduce
 from itertools import compress
 from utils.point import directions
+from random import choice
 
 PipeDir = namedtuple("FieldDir", "up right down left")
 """ Type used to indicate possible ways leading from Field. Used only in FieldType class.
@@ -26,6 +28,9 @@ class PipeType:
         '╝': PipeDir(True, False, False, True),
     }
 
+    rotate_groups = [['║', '═'], ['╩', '╠', '╦', '╣'], ['╚', '╔', '╗', '╝']]
+    flatten_rotate_groups = reduce(lambda a,b: a + b, rotate_groups, [])
+
     @classmethod
     def outputs_of(cls, sign):
         field_dir = cls.types[sign]
@@ -42,7 +47,12 @@ class Pipe:
         self._sign = sign
 
     def rotate(self, n_turns: int):
-        pass
+        if self.symbol in PipeType.flatten_rotate_groups:
+            group = [group for group in PipeType.rotate_groups if self.symbol in group][0]
+            idx = group.index(self.symbol)
+            idx = (idx + n_turns) % len(group)
+            self._sign = group[idx]
+
 
     @property
     def symbol(self):
@@ -61,3 +71,7 @@ class Pipe:
             return cls(sign)
 
         raise ValueError("No reprezentation with given values")
+
+    @classmethod
+    def random(cls):
+        return Pipe(choice([*PipeType.types.keys()]))
